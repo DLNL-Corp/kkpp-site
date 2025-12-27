@@ -12,20 +12,37 @@ function ResultPage({ result, onRestart, onShowTeam }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (containerRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = containerRef.current
-        if (scrollTop + clientHeight >= scrollHeight - 100 && !hasScrolledToBottom) {
-          setHasScrolledToBottom(true)
-          setTimeout(() => setShowPreRegister(true), 500)
-        }
+      // window 스크롤 체크
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = window.innerHeight
+
+      if (scrollTop + clientHeight >= scrollHeight - 150 && !hasScrolledToBottom) {
+        setHasScrolledToBottom(true)
+        setTimeout(() => setShowPreRegister(true), 500)
       }
     }
 
-    const container = containerRef.current
-    if (container) {
-      container.addEventListener('scroll', handleScroll)
-      return () => container.removeEventListener('scroll', handleScroll)
+    // 콘텐츠가 짧아서 스크롤이 없는 경우 체크
+    const checkNoScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = window.innerHeight
+      if (scrollHeight <= clientHeight + 50 && !hasScrolledToBottom) {
+        // 스크롤이 거의 없으면 3초 후 자동으로 모달 표시
+        setTimeout(() => {
+          if (!hasScrolledToBottom) {
+            setHasScrolledToBottom(true)
+            setShowPreRegister(true)
+          }
+        }, 3000)
+      }
     }
+
+    window.addEventListener('scroll', handleScroll)
+    // 페이지 로드 후 스크롤 여부 체크
+    setTimeout(checkNoScroll, 1000)
+
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [hasScrolledToBottom])
 
   const togglePlay = () => {
