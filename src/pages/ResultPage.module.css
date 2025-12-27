@@ -1,0 +1,234 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--color-bg-blue) 0%, var(--color-accent-lime) 100%);
+  overflow-y: auto;
+  position: relative;
+}
+
+.teamButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+.teamButton:hover {
+  transform: scale(1.1);
+}
+
+.characterSection {
+  text-align: center;
+  padding: 3rem 2rem 1rem;
+}
+
+.resultIntro {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.resultTitle {
+  font-family: var(--font-handwriting);
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.characterImage {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.playerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem 2rem;
+}
+
+.albumCover {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.albumCover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playButton {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-main-green);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.playButton:hover {
+  transform: scale(1.1);
+}
+
+.playButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.albumTitle {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  flex: 1;
+  max-width: 150px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: var(--color-white);
+  color: var(--color-text-light);
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: var(--color-main-green);
+  color: var(--color-text);
+}
+
+.tabContent {
+  padding: 0 1.5rem 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.section {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.traitsList {
+  list-style: none;
+  padding: 0;
+}
+
+.traitsList li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.traitsList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-main-green);
+  font-weight: bold;
+}
+
+.difficultyBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+.lyricsSection {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.lyrics {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
+.bottomSpacer {
+  height: 100px;
+}
+
+@media (max-width: 480px) {
+  .characterSection {
+    padding: 2rem 1.5rem 1rem;
+  }
+
+  .resultTitle {
+    font-size: 1.75rem;
+  }
+
+  .characterImage {
+    width: 120px;
+  }
+
+  .albumCover {
+    width: 180px;
+    height: 180px;
+  }
+
+  .tabContent {
+    padding: 0 1rem 2rem;
+  }
+
+  .section {
+    padding: 1.25rem;
+  }
+}

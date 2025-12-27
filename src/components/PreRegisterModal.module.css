@@ -1,0 +1,173 @@
+.overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: var(--color-white);
+  border-radius: 24px 24px 0 0;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F5F5F5;
+  color: var(--color-text-light);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.description strong {
+  color: var(--color-main-green);
+}
+
+.subDescription {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-main-green);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-main-green);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: opacity 0.2s;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.shareButton {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-bg-blue);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.notice {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.successContent {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-main-green);
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.successContent h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.successContent p {
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+}

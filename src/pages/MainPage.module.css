@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  background: linear-gradient(180deg, var(--color-bg-blue) 0%, var(--color-accent-lime) 100%);
+}
+
+.teamButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.teamButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.characters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+}
+
+.character {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.character:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.character:nth-child(2) {
+  animation-delay: 0.3s;
+  width: 90px;
+}
+
+.character:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.title {
+  font-family: var(--font-handwriting);
+  font-size: 3rem;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: var(--font-handwriting);
+  font-size: 2.5rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.startButton {
+  background: var(--color-main-green);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(202, 248, 147, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.startButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(202, 248, 147, 0.6);
+}
+
+.startButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .character {
+    width: 60px;
+  }
+
+  .character:nth-child(2) {
+    width: 70px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+}

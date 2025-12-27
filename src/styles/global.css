@@ -1,0 +1,51 @@
+:root {
+  --color-main-green: #CAF893;
+  --color-bg-blue: #EEF9FF;
+  --color-accent-lime: #DEFFB6;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-white: #FFFFFF;
+
+  /* 캐릭터 컬러 */
+  --color-green: #A8E6A3;
+  --color-purple: #D4B8E8;
+  --color-blue: #A8D8F0;
+
+  --font-handwriting: 'Nanum Pen Script', cursive;
+  --font-main: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg-blue);
+  color: var(--color-text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
