@@ -9,6 +9,11 @@ function MainPage({ onStart, onShowTeam }) {
 
       <div className={styles.characters}>
         <img
+          src="/images/characters/높은음(파랑).png"
+          alt="파랑 캐릭터"
+          className={styles.character}
+        />
+        <img
           src="/images/characters/낮은음(초록).png"
           alt="초록 캐릭터"
           className={styles.character}
@@ -16,11 +21,6 @@ function MainPage({ onStart, onShowTeam }) {
         <img
           src="/images/characters/음표(보라).png"
           alt="보라 캐릭터"
-          className={styles.character}
-        />
-        <img
-          src="/images/characters/높은음(파랑).png"
-          alt="파랑 캐릭터"
           className={styles.character}
         />
       </div>

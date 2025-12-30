@@ -5,32 +5,33 @@ import PreRegisterModal from '../components/PreRegisterModal'
 function ResultPage({ result, onRestart, onShowTeam }) {
   const [activeTab, setActiveTab] = useState('result') // result, lyrics
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [showPreRegister, setShowPreRegister] = useState(false)
+  const [hasShownModal, setHasShownModal] = useState(false)
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false)
   const audioRef = useRef(null)
-  const containerRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      // window 스크롤 체크
       const scrollTop = window.scrollY || document.documentElement.scrollTop
       const scrollHeight = document.documentElement.scrollHeight
       const clientHeight = window.innerHeight
 
       if (scrollTop + clientHeight >= scrollHeight - 150 && !hasScrolledToBottom) {
         setHasScrolledToBottom(true)
-        setTimeout(() => setShowPreRegister(true), 500)
+        if (!hasShownModal) {
+          setTimeout(() => setShowPreRegister(true), 500)
+        }
       }
     }
 
-    // 콘텐츠가 짧아서 스크롤이 없는 경우 체크
     const checkNoScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight
       const clientHeight = window.innerHeight
       if (scrollHeight <= clientHeight + 50 && !hasScrolledToBottom) {
-        // 스크롤이 거의 없으면 3초 후 자동으로 모달 표시
         setTimeout(() => {
-          if (!hasScrolledToBottom) {
+          if (!hasScrolledToBottom && !hasShownModal) {
             setHasScrolledToBottom(true)
             setShowPreRegister(true)
           }
@@ -39,11 +40,10 @@ function ResultPage({ result, onRestart, onShowTeam }) {
     }
 
     window.addEventListener('scroll', handleScroll)
-    // 페이지 로드 후 스크롤 여부 체크
     setTimeout(checkNoScroll, 1000)
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [hasScrolledToBottom])
+  }, [hasScrolledToBottom, hasShownModal])
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -56,8 +56,30 @@ function ResultPage({ result, onRestart, onShowTeam }) {
     }
   }
 
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime)
+    }
+  }
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration)
+    }
+  }
+
   const handleAudioEnd = () => {
     setIsPlaying(false)
+    setCurrentTime(0)
+  }
+
+  const handleProgressClick = (e) => {
+    if (audioRef.current && duration) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const percentage = x / rect.width
+      audioRef.current.currentTime = percentage * duration
+    }
   }
 
   const handleShare = async () => {
@@ -66,7 +88,6 @@ function ResultPage({ result, onRestart, onShowTeam }) {
       await navigator.clipboard.writeText(url)
       alert('링크가 복사되었습니다!')
     } catch (err) {
-      // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = url
       document.body.appendChild(textArea)
@@ -77,49 +98,77 @@ function ResultPage({ result, onRestart, onShowTeam }) {
     }
   }
 
+  const handleCloseModal = () => {
+    setShowPreRegister(false)
+    setHasShownModal(true)
+  }
+
+  const handleOpenPreRegister = () => {
+    setShowPreRegister(true)
+  }
+
   const difficultyColors = {
     '상': '#FF6B6B',
     '중': '#FFB84D',
     '하': '#4ECDC4'
   }
 
+  const progress = duration ? (currentTime / duration) * 100 : 0
+
   return (
-    <div className={styles.container} ref={containerRef}>
+    <div className={styles.container}>
       <button className={styles.teamButton} onClick={onShowTeam} aria-label="팀 소개">
         ?
       </button>
 
-      <audio ref={audioRef} src={result.audio} onEnded={handleAudioEnd} />
+      <audio
+        ref={audioRef}
+        src={result.audio}
+        onEnded={handleAudioEnd}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+      />
 
-      {/* 캐릭터 섹션 */}
-      <div className={styles.characterSection}>
+      {/* 상단 텍스트 */}
+      <div className={styles.headerSection}>
         <p className={styles.resultIntro}>우리 아이는</p>
         <h1 className={styles.resultTitle}>{result.title}!</h1>
-        <img
-          src={result.character}
-          alt={result.title}
-          className={styles.characterImage}
-        />
       </div>
 
-      {/* 앨범 커버 + 플레이어 */}
-      <div className={styles.playerSection}>
+      {/* 앨범 커버 (크게) */}
+      <div className={styles.albumSection}>
         <div className={styles.albumCover}>
           <img src={result.albumCover} alt="앨범 커버" />
-          <button className={styles.playButton} onClick={togglePlay}>
-            {isPlaying ? (
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            )}
-          </button>
         </div>
         <p className={styles.albumTitle}>{result.title}</p>
+      </div>
+
+      {/* 재생 컨트롤 (별도) */}
+      <div className={styles.playerControls}>
+        <button className={styles.playButton} onClick={togglePlay}>
+          {isPlaying ? (
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          )}
+        </button>
+        <div className={styles.progressBarWrapper} onClick={handleProgressClick}>
+          <div className={styles.progressBar}>
+            <div
+              className={styles.progressFill}
+              style={{ width: `${progress}%` }}
+            />
+            <div
+              className={styles.progressThumb}
+              style={{ left: `${progress}%` }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* 탭 */}
@@ -142,7 +191,6 @@ function ResultPage({ result, onRestart, onShowTeam }) {
       <div className={styles.tabContent}>
         {activeTab === 'result' ? (
           <>
-            {/* 특성 */}
             <div className={styles.section}>
               <h3 className={styles.sectionTitle}>평소에 이런 모습이에요</h3>
               <ul className={styles.traitsList}>
@@ -152,7 +200,6 @@ function ResultPage({ result, onRestart, onShowTeam }) {
               </ul>
             </div>
 
-            {/* 육아 난이도 */}
             <div className={styles.section}>
               <h3 className={styles.sectionTitle}>부모님이 느끼는 육아 난이도</h3>
               <div
@@ -164,7 +211,6 @@ function ResultPage({ result, onRestart, onShowTeam }) {
               <p className={styles.description}>{result.parentComment}</p>
             </div>
 
-            {/* 기록 방법 */}
             <div className={styles.section}>
               <h3 className={styles.sectionTitle}>우리 아이에게 딱 맞는 기록 방법</h3>
               <p className={styles.description}>{result.recordingTip}</p>
@@ -177,13 +223,25 @@ function ResultPage({ result, onRestart, onShowTeam }) {
         )}
       </div>
 
-      {/* 하단 여백 (스크롤용) */}
+      {/* 하단 버튼 (모달 닫은 후 표시) */}
+      {hasShownModal && (
+        <div className={styles.bottomButtons}>
+          <button className={styles.bottomButton} onClick={handleOpenPreRegister}>
+            사전 알림 등록하기
+          </button>
+          <button className={styles.bottomButtonSecondary} onClick={handleShare}>
+            공유하기
+          </button>
+        </div>
+      )}
+
+      {/* 하단 여백 */}
       <div className={styles.bottomSpacer} />
 
       {/* 사전등록 모달 */}
       {showPreRegister && (
         <PreRegisterModal
-          onClose={() => setShowPreRegister(false)}
+          onClose={handleCloseModal}
           onShare={handleShare}
         />
       )}

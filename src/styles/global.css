@@ -6,12 +6,16 @@
   --color-text-light: #666666;
   --color-white: #FFFFFF;
 
+  /* 강조 하이라이트 색상 (더 진하게) */
+  --color-highlight: #A8E86B;
+  --color-highlight-strong: #8CD450;
+
   /* 캐릭터 컬러 */
   --color-green: #A8E6A3;
   --color-purple: #D4B8E8;
   --color-blue: #A8D8F0;
 
-  --font-handwriting: 'Nanum Pen Script', cursive;
+  --font-handwriting: 'AndongKkaTuRi', cursive;
   --font-main: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 

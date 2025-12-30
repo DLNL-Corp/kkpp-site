@@ -21,7 +21,8 @@ function QuestionPage({
     return options
   }, [question.id])
 
-  const handleSelect = (type) => {
+  const handleSelect = (e, type) => {
+    e.target.blur() // 포커스 해제
     setSelectedOption(type)
     setTimeout(() => {
       onAnswer(type)
@@ -33,11 +34,13 @@ function QuestionPage({
 
   return (
     <div className={styles.container}>
-      <div className={styles.progressBar}>
-        <div
-          className={styles.progressFill}
-          style={{ width: `${progress}%` }}
-        />
+      <div className={styles.progressBarWrapper}>
+        <div className={styles.progressBar}>
+          <div
+            className={styles.progressFill}
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       <div className={styles.content}>
@@ -49,7 +52,7 @@ function QuestionPage({
             <button
               key={option.type}
               className={`${styles.option} ${selectedOption === option.type ? styles.selected : ''}`}
-              onClick={() => handleSelect(option.type)}
+              onClick={(e) => handleSelect(e, option.type)}
             >
               {option.text}
             </button>

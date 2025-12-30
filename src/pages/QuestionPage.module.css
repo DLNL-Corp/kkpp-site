@@ -5,16 +5,23 @@
   background: var(--color-white);
 }
 
+.progressBarWrapper {
+  padding: 1rem 1.5rem;
+}
+
 .progressBar {
-  height: 6px;
+  height: 8px;
   background: #E0E0E0;
   width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
   background: var(--color-main-green);
   transition: width 0.3s ease;
+  border-radius: 4px;
 }
 
 .content {
@@ -75,7 +82,7 @@
 
 .prevButton {
   position: fixed;
-  bottom: 2rem;
+  bottom: 4rem;
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-white);

@@ -74,7 +74,8 @@
 }
 
 .description strong {
-  color: var(--color-main-green);
+  background: linear-gradient(to top, var(--color-highlight) 40%, transparent 40%);
+  padding: 0 0.2rem;
 }
 
 .subDescription {

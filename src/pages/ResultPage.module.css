@@ -1,7 +1,6 @@
 .container {
   min-height: 100vh;
   background: linear-gradient(180deg, var(--color-bg-blue) 0%, var(--color-accent-lime) 100%);
-  overflow-y: auto;
   position: relative;
 }
 
@@ -25,7 +24,8 @@
   transform: scale(1.1);
 }
 
-.characterSection {
+/* 상단 텍스트 */
+.headerSection {
   text-align: center;
   padding: 3rem 2rem 1rem;
 }
@@ -38,28 +38,21 @@
 
 .resultTitle {
   font-family: var(--font-handwriting);
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--color-text);
-  margin-bottom: 1.5rem;
 }
 
-.characterImage {
-  width: 150px;
-  height: auto;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
-}
-
-.playerSection {
+/* 앨범 섹션 */
+.albumSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem 2rem;
+  padding: 1rem 2rem 0.5rem;
 }
 
 .albumCover {
-  position: relative;
-  width: 200px;
-  height: 200px;
+  width: 280px;
+  height: 280px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -71,38 +64,79 @@
   object-fit: cover;
 }
 
+.albumTitle {
+  margin-top: 1rem;
+  font-family: var(--font-handwriting);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* 재생 컨트롤 */
+.playerControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .playButton {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
   border-radius: 50%;
   background: var(--color-main-green);
   color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s;
 }
 
 .playButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .playButton svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
-.albumTitle {
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text);
+.progressBarWrapper {
+  flex: 1;
+  cursor: pointer;
+  padding: 0.5rem 0;
 }
 
+.progressBar {
+  position: relative;
+  height: 6px;
+  background: #E0E0E0;
+  border-radius: 3px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-main-green);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.progressThumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: var(--color-main-green);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 탭 */
 .tabs {
   display: flex;
   justify-content: center;
@@ -128,6 +162,7 @@
   color: var(--color-text);
 }
 
+/* 탭 콘텐츠 */
 .tabContent {
   padding: 0 1.5rem 2rem;
   max-width: 500px;
@@ -202,26 +237,80 @@
   word-break: keep-all;
 }
 
+/* 하단 버튼 */
+.bottomButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.bottomButton {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-main-green);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.bottomButton:hover {
+  background: var(--color-main-green);
+}
+
+.bottomButtonSecondary {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-white);
+  border: 2px solid #E0E0E0;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.bottomButtonSecondary:hover {
+  border-color: var(--color-text-light);
+}
+
 .bottomSpacer {
-  height: 100px;
+  height: 80px;
 }
 
 @media (max-width: 480px) {
-  .characterSection {
-    padding: 2rem 1.5rem 1rem;
+  .headerSection {
+    padding: 2rem 1.5rem 0.5rem;
   }
 
   .resultTitle {
-    font-size: 1.75rem;
-  }
-
-  .characterImage {
-    width: 120px;
+    font-size: 1.5rem;
   }
 
   .albumCover {
-    width: 180px;
-    height: 180px;
+    width: 240px;
+    height: 240px;
+  }
+
+  .playerControls {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+
+  .playButton {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .playButton svg {
+    width: 24px;
+    height: 24px;
   }
 
   .tabContent {

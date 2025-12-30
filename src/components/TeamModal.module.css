@@ -63,12 +63,13 @@
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 1rem;
-  padding-right: 2rem;
+  padding-right: 3rem;
   line-height: 1.5;
 }
 
 .title span {
-  color: var(--color-main-green);
+  background: linear-gradient(to top, var(--color-highlight) 40%, transparent 40%);
+  padding: 0 0.2rem;
 }
 
 .description {
@@ -89,7 +90,8 @@
 }
 
 .serviceSection strong {
-  color: var(--color-main-green);
+  background: linear-gradient(to top, var(--color-highlight) 40%, transparent 40%);
+  padding: 0 0.2rem;
 }
 
 .infoBox {
