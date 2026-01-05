@@ -151,18 +151,6 @@ function ResultPage({ result, onRestart, onShowTeam }) {
 
       {/* 재생 컨트롤 (별도) */}
       <div className={styles.playerControls}>
-        <button className={styles.playButton} onClick={togglePlay}>
-          {isPlaying ? (
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          )}
-        </button>
         <div className={styles.progressBarWrapper} onClick={handleProgressClick}>
           <div className={styles.progressBar}>
             <div
@@ -175,6 +163,18 @@ function ResultPage({ result, onRestart, onShowTeam }) {
             />
           </div>
         </div>
+        <button className={styles.playButton} onClick={togglePlay}>
+          {isPlaying ? (
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" />
+              <rect x="14" y="4" width="4" height="16" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* 탭 */}
