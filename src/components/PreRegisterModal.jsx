@@ -6,6 +6,11 @@ function PreRegisterModal({ onClose, onShare }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
+  const handleButtonClick = (e, callback) => {
+    e.currentTarget.blur()
+    callback()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -48,14 +53,14 @@ function PreRegisterModal({ onClose, onShare }) {
     return (
       <div className={styles.overlay}>
         <div className={styles.modal}>
-          <button className={styles.closeButton} onClick={onClose}>
+          <button className={styles.closeButton} onClick={(e) => handleButtonClick(e, onClose)}>
             ×
           </button>
           <div className={styles.successContent}>
             <div className={styles.successIcon}>✓</div>
             <h2>등록 완료!</h2>
             <p>출시 소식을 가장 먼저 알려드릴게요.</p>
-            <button className={styles.shareButton} onClick={onShare}>
+            <button className={styles.shareButton} onClick={(e) => handleButtonClick(e, onShare)}>
               친구에게 공유하기
             </button>
           </div>
@@ -67,7 +72,7 @@ function PreRegisterModal({ onClose, onShare }) {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.closeButton} onClick={(e) => handleButtonClick(e, onClose)}>
           ×
         </button>
 
@@ -103,7 +108,7 @@ function PreRegisterModal({ onClose, onShare }) {
           </button>
         </form>
 
-        <button className={styles.shareButton} onClick={onShare}>
+        <button className={styles.shareButton} onClick={(e) => handleButtonClick(e, onShare)}>
           공유하기
         </button>
 

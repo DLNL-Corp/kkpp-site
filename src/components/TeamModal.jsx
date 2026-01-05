@@ -2,10 +2,15 @@ import { teamInfo } from '../data/teamInfo'
 import styles from './TeamModal.module.css'
 
 function TeamModal({ onClose }) {
+  const handleClose = (e) => {
+    e.currentTarget.blur()
+    onClose()
+  }
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.closeButton} onClick={handleClose}>
           ×
         </button>
 

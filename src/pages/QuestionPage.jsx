@@ -22,12 +22,17 @@ function QuestionPage({
   }, [question.id])
 
   const handleSelect = (e, type) => {
-    e.target.blur() // 포커스 해제
+    e.currentTarget.blur() // 포커스 해제
     setSelectedOption(type)
     setTimeout(() => {
       onAnswer(type)
       setSelectedOption(null)
     }, 300)
+  }
+
+  const handlePrevious = (e) => {
+    e.currentTarget.blur()
+    onPrevious()
   }
 
   const progress = (questionNumber / totalQuestions) * 100
@@ -61,7 +66,7 @@ function QuestionPage({
       </div>
 
       {canGoPrevious && (
-        <button className={styles.prevButton} onClick={onPrevious}>
+        <button className={styles.prevButton} onClick={handlePrevious}>
           이전
         </button>
       )}

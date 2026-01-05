@@ -63,7 +63,8 @@
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 1rem;
-  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-right: 3.5rem;
 }
 
 .description {

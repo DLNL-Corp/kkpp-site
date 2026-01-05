@@ -45,7 +45,8 @@ function ResultPage({ result, onRestart, onShowTeam }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [hasScrolledToBottom, hasShownModal])
 
-  const togglePlay = () => {
+  const togglePlay = (e) => {
+    e.currentTarget.blur()
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause()
@@ -107,6 +108,11 @@ function ResultPage({ result, onRestart, onShowTeam }) {
     setShowPreRegister(true)
   }
 
+  const handleButtonClick = (e, callback) => {
+    e.currentTarget.blur()
+    callback()
+  }
+
   const difficultyColors = {
     '상': '#FF6B6B',
     '중': '#FFB84D',
@@ -117,7 +123,7 @@ function ResultPage({ result, onRestart, onShowTeam }) {
 
   return (
     <div className={styles.container}>
-      <button className={styles.teamButton} onClick={onShowTeam} aria-label="팀 소개">
+      <button className={styles.teamButton} onClick={(e) => handleButtonClick(e, onShowTeam)} aria-label="팀 소개">
         ?
       </button>
 
@@ -175,13 +181,13 @@ function ResultPage({ result, onRestart, onShowTeam }) {
       <div className={styles.tabs}>
         <button
           className={`${styles.tab} ${activeTab === 'result' ? styles.active : ''}`}
-          onClick={() => setActiveTab('result')}
+          onClick={(e) => { e.currentTarget.blur(); setActiveTab('result') }}
         >
           결과 해설
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'lyrics' ? styles.active : ''}`}
-          onClick={() => setActiveTab('lyrics')}
+          onClick={(e) => { e.currentTarget.blur(); setActiveTab('lyrics') }}
         >
           가사 보기
         </button>
@@ -226,10 +232,10 @@ function ResultPage({ result, onRestart, onShowTeam }) {
       {/* 하단 버튼 (모달 닫은 후 표시) */}
       {hasShownModal && (
         <div className={styles.bottomButtons}>
-          <button className={styles.bottomButton} onClick={handleOpenPreRegister}>
+          <button className={styles.bottomButton} onClick={(e) => { e.currentTarget.blur(); handleOpenPreRegister() }}>
             사전 알림 등록하기
           </button>
-          <button className={styles.bottomButtonSecondary} onClick={handleShare}>
+          <button className={styles.bottomButtonSecondary} onClick={(e) => { e.currentTarget.blur(); handleShare() }}>
             공유하기
           </button>
         </div>
