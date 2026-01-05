@@ -20,8 +20,14 @@
   transition: transform 0.2s;
 }
 
-.teamButton:hover {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .teamButton:hover {
+    transform: scale(1.1);
+  }
+}
+
+.teamButton:focus {
+  outline: none;
 }
 
 /* 상단 텍스트 */
@@ -97,8 +103,14 @@
   transition: transform 0.2s;
 }
 
-.playButton:hover {
-  transform: scale(1.05);
+@media (hover: hover) {
+  .playButton:hover {
+    transform: scale(1.05);
+  }
+}
+
+.playButton:focus {
+  outline: none;
 }
 
 .playButton svg {
@@ -261,8 +273,14 @@
   transition: all 0.2s;
 }
 
-.bottomButton:hover {
-  background: var(--color-main-green);
+@media (hover: hover) {
+  .bottomButton:hover {
+    background: var(--color-main-green);
+  }
+}
+
+.bottomButton:focus {
+  outline: none;
 }
 
 .bottomButtonSecondary {
@@ -277,8 +295,14 @@
   transition: all 0.2s;
 }
 
-.bottomButtonSecondary:hover {
-  border-color: var(--color-text-light);
+@media (hover: hover) {
+  .bottomButtonSecondary:hover {
+    border-color: var(--color-text-light);
+  }
+}
+
+.bottomButtonSecondary:focus {
+  outline: none;
 }
 
 .bottomSpacer {

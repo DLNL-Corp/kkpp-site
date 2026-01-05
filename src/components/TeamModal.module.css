@@ -64,8 +64,8 @@
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 1rem;
-  padding-top: 0.5rem;
-  padding-right: 3.5rem;
+  margin-top: 1.5rem;
+  padding-right: 4.5rem;
   line-height: 1.5;
 }
 

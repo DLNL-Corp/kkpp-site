@@ -70,9 +70,15 @@
   word-break: keep-all;
 }
 
-.option:hover {
-  border-color: var(--color-main-green);
-  background: var(--color-accent-lime);
+@media (hover: hover) {
+  .option:hover {
+    border-color: var(--color-main-green);
+    background: var(--color-accent-lime);
+  }
+}
+
+.option:focus {
+  outline: none;
 }
 
 .option.selected {
@@ -94,9 +100,15 @@
   transition: all 0.2s ease;
 }
 
-.prevButton:hover {
-  border-color: var(--color-text-light);
-  color: var(--color-text);
+@media (hover: hover) {
+  .prevButton:hover {
+    border-color: var(--color-text-light);
+    color: var(--color-text);
+  }
+}
+
+.prevButton:focus {
+  outline: none;
 }
 
 @media (max-width: 480px) {
