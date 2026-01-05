@@ -22,8 +22,7 @@ function TeamModal({ onClose }) {
 
         <div className={styles.serviceSection}>
           <p>
-            아이의 일기를 동요로 만들고, 아카이빙하는 AI기반 앱 서비스
-            <br />
+            아이의 일기를 동요로 만들고, 아카이빙하는 AI기반 앱 서비스{' '}
             <strong>'{teamInfo.service.name}'</strong>을 개발 중이며,
             <br />
             {teamInfo.service.launchDate} 정식 출시를 목표로 하고 있어요.
