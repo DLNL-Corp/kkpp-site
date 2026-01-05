@@ -1,6 +1,6 @@
 export const teamInfo = {
   name: "콩콩팥팥",
-  description: "숭실대학교 소속 학부생 4명으로 이루어진 pre-스타트업팀입니다.",
+  description: "숭실대학교 소속 학부생 4명으로 이루어진 pre-스타트업 팀입니다.",
   service: {
     name: "일기짠",
     tagline: "아이의 일기를 동요로 만들고, 아카이빙하는 AI기반 앱 서비스",
